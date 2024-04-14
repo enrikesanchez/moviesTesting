@@ -37,3 +37,4 @@ build/
 
 ### Secrets conifiguration ###
 env.properties
+test-env.properties

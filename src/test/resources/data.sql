@@ -1,0 +1,1 @@
+INSERT INTO "movie" ("title", "release_date", "parental_guide", "runtime") VALUES ('Star Wars: Episode IV - A New Hope', '1977-05-25', 1, '2h 1m');
