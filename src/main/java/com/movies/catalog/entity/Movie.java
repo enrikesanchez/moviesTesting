@@ -1,6 +1,8 @@
 package com.movies.catalog.entity;
 
 import com.movies.catalog.enums.ParentalGuide;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,19 +10,24 @@ import java.time.LocalDate;
 
 @Entity
 public class Movie {
+    @Schema(description = "The id")
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
+    @Schema(description = "Movie title")
     @NotNull
     private String title;
 
+    @Schema(description = "Movie Release Date")
     @NotNull
     private LocalDate releaseDate;
 
+    @Schema(description = "Movie Parental Guide. Possible values are: G, PG, PG_13, R, NC_17, NR")
     @NotNull
     private ParentalGuide parentalGuide;
 
+    @Schema(description = "Movie duration")
     @NotNull
     private String runtime;
 
