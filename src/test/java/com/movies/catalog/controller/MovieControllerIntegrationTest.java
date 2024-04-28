@@ -3,7 +3,6 @@ package com.movies.catalog.controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,7 +24,7 @@ public class MovieControllerIntegrationTest {
         this.mockMvc.perform(get("/movies"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("[")))
-                .andExpect(content().string(containsString("[")));
+                .andExpect(content().string(containsString("]")));
     }
 
     @Test
@@ -40,6 +39,14 @@ public class MovieControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"id\":1,\"title\":\"Star Wars: Episode IV - A New Hope\",\"releaseDate\":\"1977-05-25\",\"parentalGuide\":\"PG\",\"runtime\":\"2h 1m\"}"));
     }
+    @Test
+    public void testPostMovies_Existing() throws Exception {
+        this.mockMvc.perform(post("/movies")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\":0,\"title\":\"Star Wars: Episode IV - A New Hope\",\"releaseDate\":\"1977-05-25\",\"parentalGuide\":\"PG\",\"runtime\":\"2h 1m\"}")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isConflict());
+    }
 
     @Test
     public void testPostMovies_NotExisting() throws Exception {
@@ -49,15 +56,6 @@ public class MovieControllerIntegrationTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"id\": 2,\"title\": \"Star Wars: Episode V - The Empire Strikes Back\",\"releaseDate\": \"1980-05-17\",\"parentalGuide\": \"PG\",\"runtime\": \"2h 4m\"}"));
-    }
-
-    @Test
-    public void testPostMovies_Existing() throws Exception {
-        this.mockMvc.perform(post("/movies")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"id\":0,\"title\":\"Star Wars: Episode IV - A New Hope\",\"releaseDate\":\"1977-05-25\",\"parentalGuide\":\"PG\",\"runtime\":\"2h 1m\"}")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isConflict());
     }
 
     @Test
