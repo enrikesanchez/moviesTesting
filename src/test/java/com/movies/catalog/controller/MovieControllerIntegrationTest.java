@@ -54,7 +54,7 @@ public class MovieControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"id\": 0,\"title\": \"Star Wars: Episode V - The Empire Strikes Back\",\"releaseDate\": \"1980-05-17\",\"parentalGuide\": \"PG\",\"runtime\": \"2h 4m\"}")
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().json("{\"id\": 2,\"title\": \"Star Wars: Episode V - The Empire Strikes Back\",\"releaseDate\": \"1980-05-17\",\"parentalGuide\": \"PG\",\"runtime\": \"2h 4m\"}"));
     }
 
