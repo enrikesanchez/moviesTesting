@@ -8,15 +8,17 @@
 - step3. Integration Testing for Controller
   - https://dzone.com/articles/rest-endpoint-testing-with-mockmvc
 - step4. Add complete swagger documentation
+- step5. Add complete swagger documentation
 
 **Build Application**
 - mvn clean package
 
 **Run Application**
+- java -jar spring_movies.jar
 
 **Test Application**
 - mvn test
 
 **Test API**
 - http://localhost:8080/swagger-ui/index.html
-  - https://www.baeldung.com/spring-rest-openapi-documentation
+- https://www.baeldung.com/spring-rest-openapi-documentation
