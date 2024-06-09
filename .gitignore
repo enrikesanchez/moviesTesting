@@ -38,3 +38,5 @@ build/
 ### Secrets conifiguration ###
 env.properties
 test-env.properties
+db_password.txt
+db_root_password.txt
